@@ -5,12 +5,10 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\User;
-
+use App\Models\User;
 
 class LoginTest extends TestCase
 {
-
   use RefreshDatabase;
 
   public function testLoginView()
@@ -23,7 +21,7 @@ class LoginTest extends TestCase
 
   public function testCannotSeeLoginViewWhenLoggedIn()
   {
-    $user = factory(User::class)->create();
+    $user = User::factory()->create();
 
     $response = $this->actingAs($user)->get(route('login'));
     $response->assertRedirect(route('home'));
@@ -31,7 +29,7 @@ class LoginTest extends TestCase
 
   public function testUserLoggedIn()
   {
-    $user = factory(User::class)->create([
+    $user = User::factory()->create([
             'password' => bcrypt($password = 'i-love-laravel')]);
 
     $response = $this->post(route('login'), [
@@ -45,7 +43,7 @@ class LoginTest extends TestCase
 
   public function testWrongUser()
   {
-    $user = factory(User::class)->create([
+    $user = User::factory()->create([
             'password' => bcrypt($password = 'i-love-laravel')]);
 
     $response = $this->post(route('login'), [

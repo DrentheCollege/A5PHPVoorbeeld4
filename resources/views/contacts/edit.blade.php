@@ -30,7 +30,8 @@
 
             <div class="form-group">
                 <label for="company">Bedrijf</label>
-                {!! Form::select('company_id', $companies, $contact->company_id, ['class' => 'form-control']) !!}
+                {!! Form::select('company_id', $companies,
+                      $contact->company_id, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">

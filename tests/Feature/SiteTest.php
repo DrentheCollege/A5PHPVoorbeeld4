@@ -24,7 +24,7 @@ class SiteTest extends TestCase
       $response = $this->get('/');
 
       $response->assertSeeText('Laravel');
-      $response->assertSeeText('Voorbeeld');
+      $response->assertSeeText('Login');
     }
 
     public function testContactsNotLoggedIn() {
@@ -40,4 +40,5 @@ class SiteTest extends TestCase
       $response->assertSeeText('E-Mail');
       $response->assertSeeText('Password');
     }
+
 }

@@ -3,28 +3,34 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use App\Contact;
+use App\Models\Contact;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+
 
 class ContactTest extends TestCase
 {
      use RefreshDatabase;
+
       /** @test */
      function test_contactSearch()
      {
-         factory(Contact::class, 5)->create();
-         $first = factory(Contact::class)->create(['first_name' => 'Name']);
-         $second = factory(Contact::class)->create(['last_name' => 'Name']);
+       //maak 5 willekeurige contacten die niet in test naar voren komen
+       Contact::factory()->count(5)->create();
 
-         $contacts = Contact::contactSearch("Name");
+	   //twee duidelijk gedefinieerde contacten
+       $first = Contact::factory()->create(['first_name' => 'Name']);
+       $second = Contact::factory()->create(['last_name' => 'Name']);
 
-         //Er moeten 2 contacten in de lijst zitten
-         $this->assertEquals($contacts->count(), 2);
+       $contacts = Contact::contactSearch("Name");
 
-         //De eerste is bekend
-         $this->assertEquals($contacts->first()->id, $first->id);
+       //Er moeten 2 contacten in de lijst zitten:
+       // 1 met voornaam = Name en 1 met achternaam = Name
+       $this->assertEquals($contacts->count(), 2);
 
-         //De tweede zou ook nog getest kunnen worden
-         $this->assertEquals($contacts->last()->id, $second->id);
+       //De eerste is bekend
+       $this->assertEquals($contacts->first()->id, $first->id);
+
+       //De tweede zou ook nog getest kunnen worden
+       $this->assertEquals($contacts->last()->id, $second->id);
      }
 }

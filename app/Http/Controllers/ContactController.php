@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Contact;
-use App\Company;
-
+use App\Models\Contact;
+use App\Models\Company;
 
 class ContactController extends Controller
 {
@@ -76,7 +75,6 @@ class ContactController extends Controller
     public function edit(Contact $contact)
     {
         $companies = Company::pluck('name', 'id');
-
         return view('contacts.edit', compact('contact', 'companies'));
     }
 

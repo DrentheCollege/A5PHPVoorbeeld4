@@ -1,13 +1,28 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\Company;
-use Faker\Generator as Faker;
+use App\Models\Company;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Company::class, function (Faker $faker) {
-  return [
-    'id' => $faker->unique()->randomDigit,
-    'name' => $faker->name
-  ];
-});
+class CompanyFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Company::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+  	  return [
+          'name' => $this->faker->company,
+      ];
+    }
+}

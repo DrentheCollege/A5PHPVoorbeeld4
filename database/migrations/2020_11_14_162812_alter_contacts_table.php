@@ -13,13 +13,9 @@ class AlterContactsTable extends Migration
      */
     public function up()
     {
-      //fixing a sqlite bug ->nullable()
       Schema::table('contacts', function (Blueprint $table) {
-          $table->unsignedBigInteger('company_id')->nullable();
-          $table->foreign('company_id')
-                    ->references('id')->on('companies');
+          $table->foreignId('company_id')->constrained();
       });
-
     }
 
     /**
@@ -30,7 +26,7 @@ class AlterContactsTable extends Migration
     public function down()
     {
       Schema::table('contacts', function (Blueprint $table) {
-        $table->dropForeign('contacts_company_id_foreign');
+        $table->dropForeign(['company_id']);
         $table->dropColumn('company_id');
       });
     }

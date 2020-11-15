@@ -19,12 +19,13 @@
        <input type="text" class="form-control" name="keyword" placeholder="Zoek...">
        <span class="input-group-btn">
            <button class="btn btn-default-sm" type="submit">
-               <i class="fa fa-search"><span class="glyphicon glyphicon-search"></span></i>
+               <i class="fa fa-search"><span class="glyphicon glyphicon-search" />
            </button>
        </span>
-
+         </div>
      {!! Form::close() !!}
    </div>
+
 <div class="row">
 <div class="col-sm-12">
     <h1 class="display-3">Contacten</h1>
@@ -38,7 +39,7 @@
           <td>Functie</td>
           <td>Woonplaats</td>
           <td>Land</td>
-          <td colspan = 2>Actions</td>
+          <td colspan = 2>Acties</td>
         </tr>
     </thead>
     <tbody>
